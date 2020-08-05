@@ -11,6 +11,7 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def create
     @pet = Pet.new(pet_params)
+    # debugger
     if @pet.save
       render :show, status: :created
     else
