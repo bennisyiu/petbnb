@@ -25,18 +25,12 @@ pet_descriptions =
   puts "#{User.name} created!"
 end
 
-4.times do
-  user = User.all.sample.id
-  Pet.create!(user_id: user,
-              name: dognames.sample,
-              age: rand(1..9),
-              breed: dogbreed.sample,
-              gender: ["Male", "Female"].sample,
-              neutered: [true, false].sample,
-              price: rand(50..450),
-              description: pet_descriptions.sample)
-  end
-
+Pet.create!(name: 'Oscar', breed: 'Poodle', gender: 'Male', neutered: true, price: 167, description: "Personality: smart, outgoing, masters simple obedience commands", age: 4, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/46f25669e0395b160189/Labradoodle.png", user_id: User.all.sample.id)
+Pet.create!(name: 'Brody', breed: 'Bichon Frise', gender: 'Female', neutered: false, price: 373, description: "Personality: smart, outgoing, masters simple obedience commands", age: 1, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/6807991364ab4e04ed91/Bichon%20Frise.jpeg", user_id: User.all.sample.id)
+Pet.create!(name: 'Luke', breed: 'Afghan Hound', gender: 'Male', neutered: true, price: 286, description: "Forms strong bonds with those she learns to trust, enjoys company of strangers.", age: 8, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/8abc1d14338078b269d2/afghan%20hound.png", user_id: User.all.sample.id)
+Pet.create!(name: 'Bubba', breed: 'Beagle', gender: 'Female', neutered: false, price: 179, description: "Personality: happy, playful, loves to take her toys around,looking for someone to play with", age: 9, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/431d86755d579c25e637/beagle.png", user_id: User.all.sample.id)
+Pet.create!(name: 'Fluffy', breed: 'Chihuahua', gender: 'Female', neutered: false, price: 50, description: "smart, active, playful and fluffy of course ..", age: 2, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/bbc4227355b7a845e558/Chihuahua.png", user_id: User.all.sample.id)
+Pet.create!(name: 'Doggie', breed: 'Afghan Hound', gender: 'Male', neutered: false, price: 50, description: "Loves to take his toys around, looking for someone to play with", age: 3, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/8abc1d14338078b269d2/afghan%20hound.png", user_id: User.all.sample.id)
 
 4.times do
   pet = Pet.all.sample
