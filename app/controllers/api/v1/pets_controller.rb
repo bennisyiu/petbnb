@@ -5,6 +5,11 @@ class Api::V1::PetsController < Api::V1::BaseController
     @pets = Pet.all
   end
 
+  def my_pets
+    @user = User.find(params[:user_id])
+    @pets = @user.pets
+  end
+
   def show
     @pet = Pet.find(params[:id])
   end

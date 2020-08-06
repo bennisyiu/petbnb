@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      get 'my_pets', to: "pets#my_pets"
       resources :pets, only: [:index, :show, :create, :destroy] do
         resources :bookings, only: [:create]
       end
