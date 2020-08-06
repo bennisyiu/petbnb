@@ -1,4 +1,6 @@
-class Api::V1::BookingsController < Api::V1::PetsController
+class Api::V1::BookingsController < Api::V1::BaseController
+
+  skip_before_action :verify_authenticity_token
 
   def index
     @bookings = Booking.all
@@ -10,6 +12,8 @@ class Api::V1::BookingsController < Api::V1::PetsController
 
   def create
     @booking = Booking.new(booking_params)
+    @pet = Pet.find(params[:pet_id])
+    @booking.pet = @pet
     # debugger
     if @booking.save
       render :show, status: :created
@@ -26,8 +30,8 @@ class Api::V1::BookingsController < Api::V1::PetsController
 
   private
 
-  def pet_params
-    params.require(:booking).permit(:user_id, :pet_id, :start_date, :end_date, :total)
+  def booking_params
+    params.require(:booking).permit(:user_id, :start_date, :end_date, :total)
   end
 
   def render_error
