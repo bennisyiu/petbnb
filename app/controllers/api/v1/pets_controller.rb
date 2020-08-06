@@ -4,7 +4,7 @@ class Api::V1::PetsController < Api::V1::BaseController
   def index
     if params[:user_id].present?
       @user = User.find(params[:user_id])
-      @pets = Pet.all.where.not(user: @user)
+      @pets = Pet.all.where.not(user: @user) ## changed back
     else
       @pets = Pet.all
     end
