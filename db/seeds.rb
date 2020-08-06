@@ -32,18 +32,25 @@ Pet.create!(name: 'Bubba', breed: 'Beagle', gender: 'Female', neutered: false, p
 Pet.create!(name: 'Fluffy', breed: 'Chihuahua', gender: 'Female', neutered: false, price: 50, description: "smart, active, playful and fluffy of course ..", age: 2, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/bbc4227355b7a845e558/Chihuahua.png", user_id: User.all.sample.id)
 Pet.create!(name: 'Doggie', breed: 'Afghan Hound', gender: 'Male', neutered: false, price: 50, description: "Loves to take his toys around, looking for someone to play with", age: 3, photo: "http://lc-IeNhaFtr.cn-n1.lcfile.com/8abc1d14338078b269d2/afghan%20hound.png", user_id: User.all.sample.id)
 
-4.times do
-  pet = Pet.all.sample
-  user = User.where.not(id: pet.user.id).sample
-  Booking.create!(user: user, pet: pet,
-                  start_date: Faker::Date.between(from: '2020-09-23', to: '2020-10-10'),
-                  end_date: Faker::Date.between(from: '2020-10-23', to: '2020-12-25'))
-  end
+booking1 = Booking.create!(user_id: User.all.sample.id, pet_id: Pet.all.sample.id, start_date: "2020-08-10", end_date: "2020-08-17")
+days1 = (booking1.end_date - booking1.start_date).to_i
+booking1.update(total: booking1.pet.price * days1)
+puts "booking1 created!"
 
+booking2 = Booking.create!(user_id: User.all.sample.id, pet_id: Pet.all.sample.id, start_date: "2020-09-02", end_date: "2020-09-07")
+days2 = (booking2.end_date - booking2.start_date).to_i
+booking2.update(total: booking2.pet.price * days2)
+puts "booking2 created!"
 
+booking3 = Booking.create!(user_id: User.all.sample.id, pet_id: Pet.all.sample.id, start_date: "2020-08-20", end_date: "2020-08-25")
+days3 = (booking3.end_date - booking3.start_date).to_i
+booking3.update(total: booking3.pet.price * days3)
+puts "booking3 created!"
 
-
-
+booking4 = Booking.create!(user_id: User.all.sample.id, pet_id: Pet.all.sample.id, start_date: "2020-10-20", end_date: "2020-12-24")
+days4 = (booking4.end_date - booking4.start_date).to_i
+booking4.update(total: booking4.pet.price * days4)
+puts "booking4 created!"
 
 
 
