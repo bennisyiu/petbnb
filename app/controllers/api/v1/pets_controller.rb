@@ -2,8 +2,12 @@ class Api::V1::PetsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    @user = User.find(params[:user_id])
-    @pets = Pet.all.where.not(user: @user)
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @pets = Pet.all.where.not(user: @user)
+    else
+      @pets = Pet.all
+    end
   end
 
   def my_pets
