@@ -19,6 +19,12 @@ class Api::V1::PetsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @pet = Pet.find(params[:id])
+    @pet.destroy
+    render json: { status: :pet_deleted }
+  end
+
   private
 
   def pet_params
