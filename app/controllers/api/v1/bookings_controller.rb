@@ -3,7 +3,9 @@ class Api::V1::BookingsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    @bookings = Booking.all
+    @user = User.find(params[:user_id])
+    @client_bookings = @user.bookings
+    @owner_bookings = @user.bookings_as_owner
   end
 
   def show
