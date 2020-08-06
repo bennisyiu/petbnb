@@ -11,11 +11,18 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def create
     @pet = Pet.new(pet_params)
+    # debugger
     if @pet.save
       render :show, status: :created
     else
       render_error
     end
+  end
+
+  def destroy
+    @pet = Pet.find(params[:id])
+    @pet.destroy
+    render json: { status: :pet_deleted }
   end
 
   private

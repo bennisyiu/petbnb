@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :pets, only: [ :index, :show, :create ]
+      resources :pets, only: [:index, :show, :create, :destroy] do
+        resources :bookings, only: [:index, :show, :create]
+      end
+      reources :bookings, only: [:destroy]
     end
   end
 end
