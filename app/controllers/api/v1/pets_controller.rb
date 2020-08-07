@@ -1,14 +1,27 @@
 class Api::V1::PetsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
-  def index
-    if params[:user_id].present?
-      @user = User.find(params[:user_id])
-      @pets = Pet.all.where.not(user: @user)
-    else
-      @pets = Pet.all
-    end
+ def index
+  p 'in index action'
+  if params[:query].present?
+    @pets = search
+  elsif params[:user_id].present?
+    @user = User.find(params[:user_id])
+    @pets = Pet.all.where.not(user: @user)
+  else
+    @pets = Pet.all
   end
+end
+
+def search
+    sql_query = " \
+      pets.name @@ :query \
+      OR pets.breed @@ :query \
+      OR pets.gender @@ :query \
+      OR pets.description @@ :query \
+    "
+  Pet.where(sql_query, query: "%#{params[:query]}%")
+end
 
   def my_pets
     @user = User.find(params[:user_id])
