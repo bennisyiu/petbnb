@@ -16,7 +16,6 @@ class Api::V1::BookingsController < Api::V1::BaseController
     @booking = Booking.new(booking_params)
     @pet = Pet.find(params[:pet_id])
     @booking.pet = @pet
-    # debugger
     if @booking.save
       render :show, status: :created
     else
@@ -33,7 +32,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :start_date, :end_date, :total)
+    params.require(:booking).permit(:user_id, :pet_id, :start_date, :end_date, :total)
   end
 
   def render_error
